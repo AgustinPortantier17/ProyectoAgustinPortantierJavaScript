@@ -15,13 +15,12 @@ alert("Bienvenido a tu gestor de libros");
 
 //Funcion para que, si haya titulo, se agregue al arry, de lo contrario te avisa el error.
 function agregarLibro(tituloLibro, tipoLibro) {
-  if (tituloLibro != "" && null) {
+  if (tituloLibro != "" && tituloLibro != null) {
     tipoLibro.push(tituloLibro);
   } else {
     alert("Error, ingrese el nombre del libro");
   }
 }
-// FALTA INVOCARLA
 
 // Funcion para que, si el libro dado conincide con el de la categoria, se borre. El contador es para saber la posicion de la palabra.
 function borrarLibro(tituloLibro, tipoLibro) {
@@ -40,22 +39,70 @@ function borrarLibro(tituloLibro, tipoLibro) {
     alert("Error, no se encontró el libro");
   }
 }
-//FALTA INVOCARLA
 
 //Funcion para ver todos los libros de la categoria.
 
 function verLibros(tipoLibro) {
   alert(tipoLibro.join(" / "));
 }
-// FALTA INVOCARLA: verLibros(tipoLibro);
 
-function gestionLibro() {
+function elegirAccion(categoriaLibro) {
+  let accion = parseInt(
+    prompt(
+      "Dijite 1 para Agregar libro, dijite 2 para borrar libro, dijite 3 para ver libros."
+    )
+  );
+  let tituloLibro;
+
+  switch (accion) {
+    case 1:
+      tituloLibro = prompt("Escribe el titulo del libro");
+      agregarLibro(tituloLibro, categoriaLibro);
+      break;
+    case 2:
+      tituloLibro = prompt("Escribe el titulo del libro");
+      borrarLibro(tituloLibro, categoriaLibro);
+      break;
+    case 3:
+      verLibros(categoriaLibro);
+      break;
+    default:
+      alert("Error, opción no valida");
+      break;
+  }
+}
+
+// funcion principal.
+function main() {
   let continuar = true;
   while (continuar) {
     let decision = parseInt(
       prompt(
-        "Dijite 1 para Agregar libro, dijite 2 para borrar libro, dijite 3 para ver libros."
+        "Dijite 1 para elegir libros deseados, dijite 2 para libros pendientes, dijite 3 para libros leidos"
       )
     );
+
+    switch (decision) {
+      case 1:
+        elegirAccion(librosDeseados);
+        break;
+      case 2:
+        elegirAccion(librosPendientes);
+        break;
+      case 3:
+        elegirAccion(librosLeidos);
+        break;
+      default:
+        alert("Error, opción no valida");
+        break;
+    }
+    let salir = parseInt(prompt("Dijite 1 para continuar o 2 para salir"));
+    if (salir != 1 && salir != 2) {
+      alert("Error, dijite 1 o 2 con numeros");
+    } else if (salir == 2) {
+      continuar = false;
+    }
   }
 }
+
+main();
