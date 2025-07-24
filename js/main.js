@@ -49,7 +49,7 @@ function verLibros(tipoLibro) {
 function elegirAccion(categoriaLibro) {
   let accion = parseInt(
     prompt(
-      "Dijite 1 para Agregar libro, dijite 2 para borrar libro, dijite 3 para ver libros."
+      "digite 1 para Agregar libro, digite 2 para borrar libro, digite 3 para ver libros."
     )
   );
   let tituloLibro;
@@ -78,7 +78,7 @@ function main() {
   while (continuar) {
     let decision = parseInt(
       prompt(
-        "Dijite 1 para elegir libros deseados, dijite 2 para libros pendientes, dijite 3 para libros leidos"
+        "digite 1 para elegir libros deseados, digite 2 para libros pendientes, digite 3 para libros leidos"
       )
     );
 
@@ -96,9 +96,9 @@ function main() {
         alert("Error, opción no valida");
         break;
     }
-    let salir = parseInt(prompt("Dijite 1 para continuar o 2 para salir"));
+    let salir = parseInt(prompt("digite 1 para continuar o 2 para salir"));
     if (salir != 1 && salir != 2) {
-      alert("Error, dijite 1 o 2 con numeros");
+      alert("Error, digite 1 o 2 con numeros");
     } else if (salir == 2) {
       continuar = false;
     }
