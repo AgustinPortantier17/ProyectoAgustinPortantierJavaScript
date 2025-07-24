@@ -49,7 +49,7 @@ function verLibros(tipoLibro) {
 function elegirAccion(categoriaLibro) {
   let accion = parseInt(
     prompt(
-      "digite 1 para Agregar libro, digite 2 para borrar libro, digite 3 para ver libros."
+      "Digite 1 para Agregar libro, digite 2 para borrar libro, digite 3 para ver libros."
     )
   );
   let tituloLibro;
@@ -78,7 +78,7 @@ function main() {
   while (continuar) {
     let decision = parseInt(
       prompt(
-        "digite 1 para elegir libros deseados, digite 2 para libros pendientes, digite 3 para libros leidos"
+        "Digite 1 para elegir libros deseados, digite 2 para libros pendientes, digite 3 para libros leidos"
       )
     );
 
