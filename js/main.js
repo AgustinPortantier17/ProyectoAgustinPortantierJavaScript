@@ -96,7 +96,7 @@ function main() {
         alert("Error, opción no valida");
         break;
     }
-    let salir = parseInt(prompt("digite 1 para continuar o 2 para salir"));
+    let salir = parseInt(prompt("Digite 1 para continuar o 2 para salir"));
     if (salir != 1 && salir != 2) {
       alert("Error, digite 1 o 2 con numeros");
     } else if (salir == 2) {
