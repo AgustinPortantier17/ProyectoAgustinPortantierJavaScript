@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="Css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <script defer src="js/newmain.js"></script>
+    <title>SegundaEntregaAgustinPortantier</title>
+  </head>
+  <body>
+    <header>
+      <h1>Marcapáginas</h1>
+      <h2>Gestiona tus lecturas</h2>
+    </header>
+    <main>
+      <nav>
+        <h2>Tus Libros</h2>
+        <div class="gestion-libros">
+          <input type="text" placeholder="Buscar Libro" id="buscador" />
+          <p class="contadorlibros">Libros: 1</p>
+          <button id="btn-agregar">
+            <img src="assets/icons/add.webp" alt="" />
+            <p>Añadir Libro</p>
+          </button>
+        </div>
+      </nav>
+      <div class="todosLibros">
+        <section id="librosLeidos">
+          <div class="cabezaLeidos">
+            <div id="icon-leido">
+              <img src="assets/icons/leido.webp" alt="" />
+            </div>
+            <h2>Libros Leídos</h2>
+          </div>
+          <ul></ul>
+        </section>
+        <section id="librosPendientes">
+          <div class="cabezaPendientes">
+            <div id="icon-pendientes">
+              <img src="assets/icons/pendiente.webp" alt="" />
+            </div>
+            <h2>Libros Pendientes</h2>
+          </div>
+
+          <ul></ul>
+        </section>
+        <section id="librosDeseados">
+          <div class="cabezaDeseados">
+            <div id="icon-deseados">
+              <img src="assets/icons/deseado.webp" alt="" />
+            </div>
+            <h2>Libros Deseados</h2>
+          </div>
+          <ul id="listaDeseados">
+            <li></li>
+            <li></li>
+          </ul>
+        </section>
+      </div>
+    </main>
+    <div id="menuFlotanteAgregarLibro" class="flotante">
+      <form id="formAgregarLibro" class="flotante-form">
+        <h3>Agregar Libro</h3>
+        <label for="tituloLibro">Título del libro</label>
+        <input
+          type="text"
+          id="tituloLibro"
+          placeholder="Título del libro"
+          required
+        />
+        <label for="autorLibro">Autor</label>
+        <input type="text" id="autorLibro" placeholder="Autor" required />
+        <label for="categoriaLibro">Categoría</label>
+        <select id="categoriaLibro" required>
+          <option value="">Selecciona una categoría</option>
+          <option value="leido">Leído</option>
+          <option value="deseado">Deseado</option>
+          <option value="pendiente">Pendiente</option>
+        </select>
+        <button type="submit">Agregar</button>
+        <button type="button" id="cerrarMenuAgregar">Cancelar</button>
+      </form>
+    </div>
+    <aside>
+      <div id="cat-allbooks">
+        <div id="icon-todos">
+          <img src="assets/icons/todos.webp" alt="" />
+        </div>
+        <h2>Todos los Libros</h2>
+        <p id="contadorTodos">0</p>
+      </div>
+      <div id="cat-leidos">
+        <div id="icon-leido">
+          <img src="assets/icons/leido.webp" alt="" />
+        </div>
+        <h2>Libros Leídos</h2>
+        <p id="contadorLeidos">0</p>
+      </div>
+      <div id="cat-pendientes">
+        <div id="icon-pendientes">
+          <img src="assets/icons/pendiente.webp" alt="" />
+        </div>
+        <h2>Libros Pendientes</h2>
+        <p id="contadorPendientes">0</p>
+      </div>
+      <div id="cat-deseados">
+        <div id="icon-deseados">
+          <img src="assets/icons/deseado.webp" alt="" />
+        </div>
+        <h2>Libros Deseados</h2>
+        <p id="contadorDeseados">0</p>
+      </div>
+    </aside>
+    <footer>
+      <p>Proyecto Final JavaScript- Agustín Portantier - CoderHouse</p>
+    </footer>
+  </body>
+</html>
