@@ -27,7 +27,6 @@
         <h2>Tus Libros</h2>
         <div class="gestion-libros">
           <input type="text" placeholder="Buscar Libro" id="buscador" />
-          <p class="contadorlibros">Libros: 1</p>
           <button id="btn-agregar">
             <img src="assets/icons/add.webp" alt="" />
             <p>Añadir Libro</p>
@@ -42,7 +41,8 @@
             </div>
             <h2>Libros Leídos</h2>
           </div>
-          <ul></ul>
+          <ul id="listaLeidos"">
+          </ul>
         </section>
         <section id="librosPendientes">
           <div class="cabezaPendientes">
@@ -51,8 +51,8 @@
             </div>
             <h2>Libros Pendientes</h2>
           </div>
-
-          <ul></ul>
+          <ul id="listaPendientes">
+          </ul>
         </section>
         <section id="librosDeseados">
           <div class="cabezaDeseados">
@@ -62,8 +62,6 @@
             <h2>Libros Deseados</h2>
           </div>
           <ul id="listaDeseados">
-            <li></li>
-            <li></li>
           </ul>
         </section>
       </div>
@@ -84,10 +82,10 @@
         <select id="categoriaLibro" required>
           <option value="">Selecciona una categoría</option>
           <option value="leido">Leído</option>
-          <option value="deseado">Deseado</option>
           <option value="pendiente">Pendiente</option>
+          <option value="deseado">Deseado</option>
         </select>
-        <button type="submit">Agregar</button>
+        <button type="submit" id="botonAgregarINMenu">Agregar</button>
         <button type="button" id="cerrarMenuAgregar">Cancelar</button>
       </form>
     </div>
