@@ -8,7 +8,7 @@ class Libro {
   }
 }
 
-// Arrays para guardar los libros
+// Array para guardar los libros
 let librosTodos = [];
 
 // Guardo los arrays en localstorage para acceder al recargar
@@ -19,7 +19,6 @@ function guardarLibros() {
 //Cargo los libros del localstorage al array para que aparezcan al recargar, llamo funcion para que pase siempre al recargar
 function cargarLibros() {
   const todos = JSON.parse(localStorage.getItem("librosTodos")) || [];
-
   librosTodos.push(...todos);
 }
 cargarLibros();
@@ -95,6 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Funcion para mostrar los cambios de los arrays en el HTML
 refrescarLibros = () => {
+  // Utilizo el filter para crear 3 arrays
   const librosLeidos = librosTodos.filter(
     (libro) => libro.categoria === "leido"
   );
