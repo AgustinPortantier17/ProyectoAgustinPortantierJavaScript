@@ -1,108 +1,141 @@
-//El proyecto es una web para ingresar lista de libros leidos, deseados y pendientes.
-// Minimo 1 condicional (if, else) LISTO!!!!
-// Minimo 1 ciclo (while, for) LISTO!!!!
-// Minimo 3 funciones con parametros
-// Prompts, alerts y console
+// clase libro
 
-// 3 Arrays. uno para libros leidos, otro para libros deseados y otro para libros pendientes.
-const librosLeidos = [];
-const librosDeseados = [];
-const librosPendientes = [];
-
-// Definir las funciones: 1 para agregar libro, otro para ver todos los libros en una categoria en especifico, otro para borrar libro. La idea es navegar, borrar un libro deseado para agregarlo a pendiente y luego borrar un libro pendiente cuando fue leido.
-
-alert("Bienvenido a tu gestor de libros");
-
-//Funcion para que, si haya titulo, se agregue al arry, de lo contrario te avisa el error.
-function agregarLibro(tituloLibro, tipoLibro) {
-  if (tituloLibro != "" && tituloLibro != null) {
-    tipoLibro.push(tituloLibro);
-  } else {
-    alert("Error, ingrese el nombre del libro");
+class Libro {
+  constructor(titulo, autor, categoria) {
+    this.titulo = titulo;
+    this.autor = autor;
+    this.categoria = categoria;
   }
 }
 
-// Funcion para que, si el libro dado conincide con el de la categoria, se borre. El contador es para saber la posicion de la palabra.
-function borrarLibro(tituloLibro, tipoLibro) {
-  let contador = 0;
-  let borrado = false;
+// Arrays para guardar los libros
+let librosTodos = [];
 
-  for (const libro of tipoLibro) {
-    if (tituloLibro === libro) {
-      tipoLibro.splice(contador, 1);
-      borrado = true;
-      alert("El libro ha sido borrado de la categoría");
+// Guardo los arrays en localstorage para acceder al recargar
+function guardarLibros() {
+  localStorage.setItem("librosTodos", JSON.stringify(librosTodos));
+}
+
+//Cargo los libros del localstorage al array para que aparezcan al recargar, llamo funcion para que pase siempre al recargar
+function cargarLibros() {
+  const todos = JSON.parse(localStorage.getItem("librosTodos")) || [];
+
+  librosTodos.push(...todos);
+}
+cargarLibros();
+
+// Funcion del boton agregar: mostrar menu flotante
+document.addEventListener("DOMContentLoaded", () => {
+  const btnAgregar = document.getElementById("btn-agregar"); //variable del boton
+
+  const menu = document.getElementById("menuFlotanteAgregarLibro"); // variable del menu flotante
+
+  const cerrar = document.getElementById("cerrarMenuAgregar"); // variable del boton cerrar
+
+  btnAgregar.addEventListener("click", () => {
+    // hago click y se muestra
+    menu.style.display = "flex";
+  });
+  cerrar.addEventListener("click", () => {
+    //hago click y se cierra
+    menu.style.display = "none";
+
+    document.getElementById("formAgregarLibro").reset(); // reset al formulario
+  });
+
+  // Agregar evento de agregar libro
+
+  const btnAgregarLibro = document.getElementById("botonAgregarINMenu");
+  btnAgregarLibro.addEventListener("click", () => {
+    if (
+      document.getElementById("tituloLibro").value &&
+      document.getElementById("autorLibro").value &&
+      document.getElementById("categoriaLibro").value
+    ) {
+      // Al hacer click, con los campos llenos, se agregar el librro a sus arrays.
+      let newLibro = new Libro(
+        document.getElementById("tituloLibro").value,
+        document.getElementById("autorLibro").value,
+        document.getElementById("categoriaLibro").value
+      );
+      librosTodos.push(newLibro);
+      guardarLibros(); // Llame a funcion de guardado
     }
-    contador++;
-  }
-  if (borrado == false) {
-    alert("Error, no se encontró el libro");
-  }
-}
+  });
+});
 
-//Funcion para ver todos los libros de la categoria.
+// Funcion del boton borrar: mostrar menu flotante
+document.addEventListener("DOMContentLoaded", () => {
+  const btnBorrar = document.getElementById("btn-borrar");
+  const menu = document.getElementById("menuFlotanteBorrarLibro");
+  const cerrar = document.getElementById("cerrarMenuBorrar");
 
-function verLibros(tipoLibro) {
-  alert(tipoLibro.join(" / "));
-}
+  btnBorrar.addEventListener("click", () => {
+    menu.style.display = "flex";
+  });
+  cerrar.addEventListener("click", () => {
+    menu.style.display = "none";
 
-function elegirAccion(categoriaLibro) {
-  let accion = parseInt(
-    prompt(
-      "Digite 1 para Agregar libro, digite 2 para borrar libro, digite 3 para ver libros."
-    )
+    document.getElementById("formBorrarLibro").reset();
+  });
+
+  // Agregar evento de borrar libro
+  const btnBorrarLibro = document.getElementById("botonBorrarINMenu");
+  btnBorrarLibro.addEventListener("click", () => {
+    if (document.getElementById("tituloBorrar").value) {
+      librosTodos = librosTodos.filter(
+        (libro) =>
+          libro.titulo.toLowerCase() !==
+          document.getElementById("tituloBorrar").value.toLowerCase()
+      );
+      guardarLibros();
+    }
+  });
+});
+
+// Funcion para mostrar los cambios de los arrays en el HTML
+refrescarLibros = () => {
+  const librosLeidos = librosTodos.filter(
+    (libro) => libro.categoria === "leido"
   );
-  let tituloLibro;
 
-  switch (accion) {
-    case 1:
-      tituloLibro = prompt("Escribe el titulo del libro");
-      agregarLibro(tituloLibro, categoriaLibro);
-      break;
-    case 2:
-      tituloLibro = prompt("Escribe el titulo del libro");
-      borrarLibro(tituloLibro, categoriaLibro);
-      break;
-    case 3:
-      verLibros(categoriaLibro);
-      break;
-    default:
-      alert("Error, opción no valida");
-      break;
-  }
-}
+  const librosPendientes = librosTodos.filter(
+    (libro) => libro.categoria === "pendiente"
+  );
+  const librosDeseados = librosTodos.filter(
+    (libro) => libro.categoria === "deseado"
+  );
 
-// funcion principal.
-function main() {
-  let continuar = true;
-  while (continuar) {
-    let decision = parseInt(
-      prompt(
-        "Digite 1 para elegir libros deseados, digite 2 para libros pendientes, digite 3 para libros leidos"
-      )
-    );
+  // Va a mostrar titulo y autor en sus respectivas UL como un LI FOR EACH
+  let listaLibrosLeidos = document.getElementById("listaLeidos");
+  librosLeidos.forEach((libro) => {
+    let nuevoLibroLeido = document.createElement("li");
+    nuevoLibroLeido.textContent = libro.titulo + " - " + libro.autor;
+    listaLibrosLeidos.appendChild(nuevoLibroLeido);
+  });
 
-    switch (decision) {
-      case 1:
-        elegirAccion(librosDeseados);
-        break;
-      case 2:
-        elegirAccion(librosPendientes);
-        break;
-      case 3:
-        elegirAccion(librosLeidos);
-        break;
-      default:
-        alert("Error, opción no valida");
-        break;
-    }
-    let salir = parseInt(prompt("Digite 1 para continuar o 2 para salir"));
-    if (salir != 1 && salir != 2) {
-      alert("Error, digite 1 o 2 con numeros");
-    } else if (salir == 2) {
-      continuar = false;
-    }
-  }
-}
+  let listaLibrosPendientes = document.getElementById("listaPendientes");
+  librosPendientes.forEach((libro) => {
+    let nuevoLibroPendiente = document.createElement("li");
+    nuevoLibroPendiente.textContent = libro.titulo + " - " + libro.autor;
+    listaLibrosPendientes.appendChild(nuevoLibroPendiente);
+  });
+  let listaLibrosDeseados = document.getElementById("listaDeseados");
+  librosDeseados.forEach((libro) => {
+    let nuevoLibroDeseado = document.createElement("li");
+    nuevoLibroDeseado.textContent = libro.titulo + " - " + libro.autor;
+    listaLibrosDeseados.appendChild(nuevoLibroDeseado);
+  });
 
-main();
+  // Va a actualziar el contador de libros en el aside LENGTH
+
+  let contadorLeidos = document.getElementById("contadorLeidos");
+  let contadorPendientes = document.getElementById("contadorPendientes");
+  let contadorDeseados = document.getElementById("contadorDeseados");
+  let contadorTodos = document.getElementById("contadorTodos");
+  contadorLeidos.innerHTML = librosLeidos.length;
+  contadorPendientes.innerHTML = librosPendientes.length;
+  contadorDeseados.innerHTML = librosDeseados.length;
+  contadorTodos.innerHTML = librosTodos.length;
+};
+refrescarLibros();
