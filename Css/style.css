@@ -43,9 +43,10 @@ main h2 {
 }
 
 .gestion-libros {
-   display: flex;
-   align-items: center;
+    display: flex;
+    justify-content: center;
 }
+
 .contadorlibros {
     font-size: 20px;
     font-weight: 900;
@@ -116,7 +117,9 @@ main h2 {
     background-color: rgb(231, 111, 89);
 }
 
-.todosLibros section div {
+.cabezaLeidos,
+.cabezaPendientes,
+.cabezaDeseados {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -130,6 +133,8 @@ main h2 {
     width: 56px;
     border-radius: 50%;
     border: 1px solid #000;
+    display: flex;
+    justify-content: center;
 }
 
 .todosLibros section ul  {
@@ -137,10 +142,50 @@ main h2 {
     margin: 0 35px;
     font-size: 20px;
     font-weight: 900;
+    list-style: none;
 }
 
 .todosLibros section ul li {
     margin: 10px 0;
+}
+
+.cajaLibro {
+    background: linear-gradient(135deg, #a1d9ff 0%, #f0f0f0 100%);
+    height: 220px;
+    display: grid;
+    grid-template-columns: 170px 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    border: 2px solid #0c0c0c;
+    border-radius: 15px;
+    padding: 10px;
+    align-items: center;
+    align-content: center;
+}
+
+.cajaLibro img {
+    grid-area: 1 / 1 / 4 / 3;
+    width: 150px;
+    height: 200px;
+    border: 1px solid #000;
+    border-radius: 15px;
+
+}
+.cajaLibro h3 {
+    grid-area: 1 / 2 / 2 / 2;
+}
+.cajaLibro h4 {
+    grid-area: 2 / 2 / 3 / 3;
+}
+
+.todosLibros section div .datosLibro {
+    grid-area: 3 / 2 / 4 / 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    border: none;
+    width: 100%;
+    font-size: 16px;
 }
 /*ASIDE*/
 aside {
@@ -222,6 +267,8 @@ footer {
     align-items: center;
     justify-content: center;
     z-index: 1000;
+
+
 
 }
 .flotante-form {
