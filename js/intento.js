@@ -1,33 +1,47 @@
-const btnMover = document.getElementById("btn-mover");
-const menuMover = document.getElementById("menuFlotanteMoverLibro");
-const cerrarMover = document.getElementById("cerrarMenuMover");
+let listaLibrosRecomendados = document.getElementById(
+  "listaLibrosRecomendados"
+);
+const URL = "http://127.0.0.1:5500/db/data.json";
 
-btnMover.addEventListener("click", () => {
-  menuMover.style.display = "flex";
-});
-cerrarMover.addEventListener("click", () => {
-  menuMover.style.display = "none";
+function cargarLibrosRecomendados() {
+  fetch(URL)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      renderLibros(data);
+    });
+}
+cargarLibrosRecomendados();
 
-  document.getElementById("formMoverLibro").reset();
-});
+function renderLibros(listaRecomendados) {
+  listaRecomendados.forEach((recomendado) => {
+    const card = document.createElement("div");
+    card.innerHTML = `
+      <div class="cajaRecomendado">
+        <img class="imagenLibro" src="${recomendado.imagen}" alt="Portada de ${recomendado.titulo}">
+        <h3 class="tituloLibro">${recomendado.titulo}</h3>
+        <h4 class="autorLibro">${recomendado.autor}</h4>
+        <div class="datosLibro">
+          <p class="generoLibro">Géneros: ${recomendado.genero}</p>
+          <p class="añoLibro">Año: ${recomendado.año}</p>
+          <button class="btnSinopsis">Ver sinopsis</button>
+        </div>
+      </div>
+    `;
+    // Agrega el card al contenedor
+    listaLibrosRecomendados.appendChild(card);
 
-// Agregar evento de mover libro de categoria
-const btnMoverLibro = document.getElementById("botonMoverINMenu");
-btnMoverLibro.addEventListener("click", () => {
-  if (
-    document.getElementById("tituloMover").value &&
-    document.getElementById("categoriaMover").value &&
-    document.getElementById("nuevaCategoria").value
-  ) {
-    for (libro of librosTodos) {
-      if (
-        libro.titulo.toLowerCase() ===
-          document.getElementById("tituloMover").value.toLowerCase() &&
-        libro.categoria === document.getElementById("categoriaMover").value
-      ) {
-        libro.categoria = document.getElementById("nuevaCategoria").value;
-        guardarLibros();
-      }
-    }
-  }
-});
+    // Botón modal para ver la sinopsis
+    const btnSinopsis = card.querySelector(".btnSinopsis");
+    btnSinopsis.addEventListener("click", () => {
+      Swal.fire({
+        title: `Sinopsis de ${recomendado.titulo}`,
+        html: `<div class="texto-justificado">${recomendado.sinopsis}</div>`,
+        icon: "info",
+        customClass: {
+          htmlContainer: "texto-justificado",
+        },
+      });
+    });
+  });
+}

@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "titulo": "Nacidos de la Bruma",
+    "autor": "Brandon Sanderson",
+    "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtTqTF6ymvkyraS2kV9ft2oTrRkJJBqSTAPw&s",
+    "año": "2006",
+    "genero": "Fantasía, Aventura, Acción, Distopía, Ciencia Ficción",
+    "sinopsis": "Durante mil años, han caído las cenizas y nada florece. Durante mil años, los Skaa han sido esclavizados y viven sumidos en un miedo inevitable. Durante mil años, el Lord Legislador reina con un poder absoluto gracias al terror, a sus poderes y a su inmortalidad. Le ayudan «obligadores» e «inquisidores», junto a la poderosa magia de la alomancia. Pero los nobles a menudo han tenido trato sexual con jóvenes skaa y, aunque la ley lo prohíbe, algunos de sus bastardos han sobrevivido y heredado los poderes alománticos: son los «nacidos de la bruma» (mistborns). Ahora, Kelsier, el «superviviente», el único que ha logrado huir de los Pozos de Hathsin, ha encontrado a Vin, una pobre chica skaa con mucha suerte… Tal vez los dos, unidos a la rebelión que los skaa intentan desde hace mil años, logren cambiar el mundo y la atroz dominación del Lord Legislador."
+  },
+  {
+    "id": 2,
+    "titulo": "Dune",
+    "autor": "Frank Herbert",
+    "imagen": "https://images.cdn3.buscalibre.com/fit-in/360x360/0c/00/0c00cbb74142643771a16065636dd0e3.jpg",
+    "año": "1965",
+    "genero": "Ciencia Ficción, Aventura, Fantasía",
+    "sinopsis": "En el lejano futuro, el joven Paul Atreides y su familia, la noble Casa Atreides, son enviados al desértico planeta Arrakis, la única fuente de la ´especia´ melange, una sustancia valiosa que prolonga la vida y potencia las capacidades mentales. En medio de intrigas políticas, traiciones y conflictos entre poderosas facciones como la Casa Harkonnen, el Imperio y la misteriosa Bene Gesserit, Paul descubre su destino como una figura mesiánica. Enfrentándose a un entorno hostil y a los nativos Fremen, Paul debe liderar una revolución que cambiará el curso del universo, mientras desentraña los secretos de Arrakis y su propia identidad."
+  },
+  {
+    "id": 3,
+    "titulo": "Cien años de soledad",
+    "autor": "Gabriel García Márquez",
+    "imagen": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Cien_a%C3%B1os_de_soledad.png/330px-Cien_a%C3%B1os_de_soledad.png",
+    "año": "1967",
+    "genero": "Realísmo Magico, Drama, Ficción Familiar, Novela Histórica",
+    "sinopsis": "La novela narra la historia de la familia Buendía a lo largo de siete generaciones en el pueblo ficticio de Macondo. A través de eventos mágicos y realistas, se exploran temas como el amor, la soledad, el destino y los ciclos repetitivos de la historia, en un relato que mezcla lo cotidiano con lo extraordinario."
+  },
+  {
+    "id": 4,
+    "titulo": "1984",
+    "autor": "George Orwell",
+    "imagen": "https://images.cdn1.buscalibre.com/fit-in/360x360/b0/39/b039af065268818b7bd3b0e016f8db65.jpg",
+    "año": "1949",
+    "genero": "Distopía, Ficción política, Ciencia Ficción, Sátira",
+    "sinopsis": "En un mundo totalitario dominado por el Partido y su líder, el Gran Hermano, Winston Smith lucha por mantener su individualidad bajo una vigilancia constante. La novela explora la manipulación, la pérdida de libertad y la resistencia frente a un régimen opresivo que controla la verdad y la historia."
+  },
+  {
+    "id": 5,
+    "titulo": "El señor de los anillos",
+    "autor": "J.R.R. Tolkien",
+    "imagen": "https://images.cdn1.buscalibre.com/fit-in/360x360/35/2e/352e63af40b5cc4eada5cee03da49412.jpg",
+    "año": "1954",
+    "genero": "Fantasía épica, Aventura, Mitología, Ficción heroica",
+    "sinopsis": "Frodo Bolsón, un hobbit, emprende una misión para destruir el Anillo Único, un artefacto maligno que amenaza con someter al mundo bajo el poder del señor oscuro Sauron. Acompañado por una comunidad de héroes, enfrenta peligros en un viaje épico que aborda el sacrificio, la amistad y la lucha contra el mal."
+  },
+  {
+    "id": 6,
+    "titulo": "Las aventuras de Sherlock Holmes",
+    "autor": "Arthur Conan Doyle",
+    "imagen": "https://images.cdn3.buscalibre.com/fit-in/360x360/60/4c/604c6aeba07c02fee242e90144451eb9.jpg",
+    "año": "1892",
+    "genero": "Ficción detectivesca, Misterio, Crimen, Cuento",
+    "sinopsis": "En los doce relatos recogidos en este libro, Sherlock Holmes despliega toda su genialidad y potencial de razonamiento y, junto a Watson, forman una de las parejas más célebres de la ficción. En Escándalo en Bohemia, el rey de Bohemia solicita la ayuda de Sherlock Holmes para recuperar una imagen que puede usarse en su contra. En La liga de los Pelirrojos, un hombre acude al detective en busca de consejo sobre la desaparición de una extraña sociedad de pelirrojos. En El misterio de Boscombe Valley, Holmes investiga el asesinato de un hombre cuyo hijo es el principal sospechoso. En Las cinco semillas de naranja, los detectives se enfrentan a un caso familiar: dos hermanos y un hijo reciben cartas del KKK que contienen cinco pepitas de naranja, un presagio de la muerte. En La banda de lunares, Helen Stoner ruega a Sherlock Holmes que le ayude a resolver la muerte de su hermana, fallecida un día antes de su boda. Ahora la mujer teme correr la misma suerte."
+  },
+  {
+    "id": 7,
+    "titulo": "El Conde de Montecristo",
+    "autor": "Alejandro Dumas",
+    "imagen": "https://images.cdn2.buscalibre.com/fit-in/360x360/51/d8/51d8ae5f768e68e292bb652c26373d7a.jpg",
+    "año": "1845",
+    "genero": "Ficción histórica, Aventura, Drama, Venganza",
+    "sinopsis": "Edmundo Dantés, un joven marinero, es traicionado por sus supuestos amigos y encarcelado injustamente en el Castillo de If. Tras escapar y descubrir un tesoro oculto, adopta la identidad del misterioso Conde de Montecristo. Con astucia y riqueza, planea una elaborada venganza contra aquellos que lo traicionaron, mientras explora temas de justicia, redención y el costo de la obsesión."
+  },
+  {
+    "id": 8,
+    "titulo": "El Camino de los Reyes",
+    "autor": "Brandon Sanderson",
+    "imagen": "https://m.media-amazon.com/images/I/81pzG7oNfHL._UF1000,1000_QL80_.jpg",
+    "año": "2010",
+    "genero": "Fantasía épica, Alta Fantasía, Aventura, Ficción Militar, Drama",
+    "sinopsis": "Anhelo los días previos a la Última Desolación. Los días en que los Heraldos nos abandonaron y los Caballeros Radiantes se giraron en nuestra contra. Un tiempo en que aún había magia en el mundo y honor en el corazón de los hombres. El mundo fue nuestro, pero lo perdimos. Probablemente no hay nada más estimulante para las almas de los hombres que la victoria. ¿O tal vez fue la victoria una ilusión durante todo ese tiempo? ¿Comprendieron nuestros enemigos que cuanto más duramente luchaban, más resistíamos nosotros?"
+  },
+  {
+    "id": 9,
+    "titulo": "It (Eso)",
+    "autor": "Stephen King",
+    "imagen": "https://images.cdn1.buscalibre.com/fit-in/360x360/ff/ec/ffecaba38f22e8d748e8472358d3e124.jpg",
+    "año": "1986",
+    "genero": "Terror, Suspense, Ficción sobrenatural, Novela de formación, Drama",
+    "sinopsis": "En la tranquila ciudad de Derry, Maine, un mal antiguo y cambiante despierta cada veintisiete años para alimentarse del miedo de los niños. En 1958, siete amigos, conocidos como el Club de los Perdedores, enfrentan a una entidad aterradora que adopta la forma de Pennywise, un payaso siniestro. A través de su valentía y amistad, logran herirlo, pero juran regresar si el mal reaparece. Décadas después, en 1985, los ahora adultos deben reunirse nuevamente para cumplir su promesa y enfrentar a Eso en una batalla final, desentrañando los secretos de su infancia y el oscuro pasado de Derry."
+  },
+  {
+    "id": 10,
+    "titulo": "La teoría del todo: El origen y el destino del universo",
+    "autor": "Stephen Hawking",
+    "imagen": "https://www.bookshop.com.uy/media/catalog/product/cache/da73607d3528e7d3c6633d199d3d4f17/9/7/9788483468913.jpg",
+    "año": "2002",
+    "genero": "Divulgación científica, Física, Cosmología, No ficción",
+    "sinopsis": "En esta obra, Stephen Hawking explora los misterios del universo, desde el Big Bang hasta los agujeros negros, en un lenguaje accesible para el público general. Basado en una serie de conferencias, el libro aborda conceptos como la relatividad, la mecánica cuántica y las teorías unificadas, ofreciendo una visión sobre el origen, la evolución y el posible destino del cosmos, mientras reflexiona sobre la búsqueda de una 'teoría del todo' que explique las leyes fundamentales de la naturaleza."
+  }
+]

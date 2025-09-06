@@ -14,14 +14,12 @@
       href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
       rel="stylesheet"
     />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script defer src="js/main.js"></script>
-    <title>intento para libros</title>
+
+    <title>Marcapáginas</title>
   </head>
   <body>
-    <header>
-      <h1>Marcapáginas</h1>
-      <h2>Gestiona tus lecturas</h2>
-    </header>
     <main>
       <nav>
         <h2>Tus Libros</h2>
@@ -103,11 +101,10 @@
           id="imagenLibro"
           placeholder="https://ejemplo.com/imagen.jpg"
         />
-        <button type="submit" id="botonAgregarINMenu">Agregar</button>
+        <button type="button" id="botonAgregarINMenu">Agregar</button>
         <button type="button" id="cerrarMenuAgregar">Cancelar</button>
       </form>
     </div>
-
     <div id="menuFlotanteBorrarLibro" class="flotante">
       <form id="formBorrarLibro" class="flotante-form">
         <h3>Borrar Libro</h3>
@@ -125,7 +122,7 @@
           <option value="pendiente">Pendiente</option>
           <option value="deseado">Deseado</option>
         </select>
-        <button type="submit" id="botonBorrarINMenu">Borrar</button>
+        <button type="button" id="botonBorrarINMenu">Borrar</button>
         <button type="button" id="cerrarMenuBorrar">Cancelar</button>
       </form>
     </div>
@@ -154,12 +151,17 @@
           <option value="pendiente">Pendiente</option>
           <option value="deseado">Deseado</option>
         </select>
-        <button type="submit" id="botonMoverINMenu">Mover</button>
+        <button type="button" id="botonMoverINMenu">Mover</button>
         <button type="button" id="cerrarMenuMover">Cancelar</button>
       </form>
     </div>
 
     <aside>
+      <div>
+        <h1>Marcapáginas</h1>
+        <h2>Gestiona tus lecturas</h2>
+      </div>
+
       <div id="cat-allbooks">
         <div id="icon-todos">
           <img src="assets/icons/todos.webp" alt="" />

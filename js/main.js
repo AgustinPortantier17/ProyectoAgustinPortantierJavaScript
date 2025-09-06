@@ -1,5 +1,4 @@
 // clase libro
-
 class Libro {
   constructor(titulo, autor, categoria, imagen, genero, año) {
     this.titulo = titulo;
@@ -22,7 +21,8 @@ function guardarLibros() {
 //Cargo los libros del localstorage al array para que aparezcan al recargar, llamo funcion para que pase siempre al recargar
 function cargarLibros() {
   const todos = JSON.parse(localStorage.getItem("librosTodos")) || [];
-  librosTodos.push(...todos);
+  librosTodos = [...todos];
+  /* librosTodos.push(...todos) */
 }
 cargarLibros();
 
@@ -60,6 +60,7 @@ btnAgregarLibro.addEventListener("click", () => {
         libro.autor.toLowerCase() ===
           document.getElementById("autorLibro").value.toLowerCase()
     );
+
     try {
       if (libroRepetido.length === 0) {
         // Al hacer click, con los campos llenos, se agregar el librro a sus arrays.
@@ -71,13 +72,30 @@ btnAgregarLibro.addEventListener("click", () => {
           document.getElementById("generoLibro").value,
           document.getElementById("añoLibro").value
         );
+
         librosTodos.push(newLibro);
         guardarLibros(); // Llame a funcion de guardado
+        document.getElementById("formAgregarLibro").reset(); // reset al formulario
+        document.getElementById("menuFlotanteAgregarLibro").style.display =
+          "none";
+        refrescarLibros();
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Este libro fue añadido correctamente",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       } else {
-        throw new Error("El libro de este autor ya existe en tu lista");
+        throw new Error("Este libro ya se encuentra en la lista");
       }
     } catch (error) {
-      alert(error.message);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: error.message,
+        footer: "Revisa tu lista!",
+      });
     }
   }
 });
@@ -112,6 +130,16 @@ btnBorrarLibro.addEventListener("click", () => {
     );
     guardarLibros();
     // Bajo esta funcion, se borra el libro si es FALSE, por lo tanto uso ||, porque si uso &&, puede dar false y borrarse todos los libros, con || no pasa porque puede dar true si conincide uno de los 2.
+    document.getElementById("formBorrarLibro").reset(); // reset al formulario
+    document.getElementById("menuFlotanteBorrarLibro").style.display = "none";
+    refrescarLibros();
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Este libro fue borrado correctamente",
+      showConfirmButton: false,
+      timer: 1500,
+    });
   }
 });
 
@@ -145,6 +173,10 @@ btnMoverLibro.addEventListener("click", () => {
       ) {
         libro.categoria = document.getElementById("nuevaCategoria").value;
         guardarLibros();
+        document.getElementById("formMoverLibro").reset();
+        document.getElementById("menuFlotanteMoverLibro").style.display =
+          "none";
+        refrescarLibros(); // Llamada para actualizar la interfaz
       }
     }
   }
@@ -152,6 +184,11 @@ btnMoverLibro.addEventListener("click", () => {
 
 // Funcion para mostrar los cambios de los arrays en el HTML
 refrescarLibros = () => {
+  // Vaciar las listas antes de agregar nuevos elementos
+  document.getElementById("listaLeidos").innerHTML = "";
+  document.getElementById("listaPendientes").innerHTML = "";
+  document.getElementById("listaDeseados").innerHTML = "";
+
   // Utilizo el filter para crear 3 arrays
   const librosLeidos = librosTodos.filter(
     (libro) => libro.categoria === "leido"
@@ -165,156 +202,72 @@ refrescarLibros = () => {
   );
 
   let listaLibrosLeidos = document.getElementById("listaLeidos");
+  let htmlLeidos = "";
   librosLeidos.forEach((libro) => {
-    let nuevoLibroLeido = document.createElement("li");
-    nuevoLibroLeido.className = "nuevoLibroLeido";
-
-    let libroDiv = document.createElement("div");
-    libroDiv.className = "cajaLibro";
-
-    let libroImagen = document.createElement("img");
-    libroImagen.className = "imagenLibro";
-    libroImagen.src =
-      libro.imagen ||
-      "https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg";
-    libroImagen.alt = `Portada de ${libro.titulo}`;
-
-    let libroTitulo = document.createElement("h3");
-    libroTitulo.className = "tituloLibro";
-    libroTitulo.textContent = libro.titulo;
-
-    let libroAutor = document.createElement("h4");
-    libroAutor.className = "autorLibro";
-    libroAutor.textContent = libro.autor;
-
-    let libroDatos = document.createElement("div");
-    libroDatos.className = "datosLibro";
-
-    let libroGenero = document.createElement("p");
-    libroGenero.className = "generoLibro";
-    libroGenero.textContent = "Géneros: " + libro.genero;
-
-    let libroAño = document.createElement("p");
-    libroAño.className = "añoLibro";
-    libroAño.textContent = "Año: " + libro.año;
-
-    // Nuevos p para el div, año, genero y autor
-    libroDatos.appendChild(libroGenero);
-    libroDatos.appendChild(libroAño);
-
-    //Nuevo img, h3 y div dentro del DIV
-    libroDiv.appendChild(libroImagen);
-    libroDiv.appendChild(libroTitulo);
-    libroDiv.appendChild(libroAutor);
-    libroDiv.appendChild(libroDatos);
-
-    // Nuevo DIV dentro del LI
-    nuevoLibroLeido.appendChild(libroDiv);
-
-    //Nuevo LI dentro de la UL
-    listaLibrosLeidos.appendChild(nuevoLibroLeido);
+    htmlLeidos += `
+      <li class="nuevoLibroLeido">
+        <div class="cajaLibro">
+          <img class="imagenLibro" src="${
+            libro.imagen ||
+            "https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg"
+          }" alt="Portada de ${libro.titulo}">
+          <h3 class="tituloLibro">${libro.titulo}</h3>
+          <h4 class="autorLibro">${libro.autor}</h4>
+          <div class="datosLibro">
+            <p class="generoLibro">Géneros: ${libro.genero}</p>
+            <p class="añoLibro">Año: ${libro.año}</p>
+          </div>
+        </div>
+      </li>
+    `;
   });
+  listaLibrosLeidos.innerHTML = htmlLeidos;
 
   let listaLibrosPendientes = document.getElementById("listaPendientes");
+  let htmlPendientes = "";
   librosPendientes.forEach((libro) => {
-    let nuevoLibroPendiente = document.createElement("li");
-    nuevoLibroPendiente.className = "nuevoLibroDeseado";
-
-    let libroDiv = document.createElement("div");
-    libroDiv.className = "cajaLibro";
-
-    let libroImagen = document.createElement("img");
-    libroImagen.className = "imagenLibro";
-    libroImagen.src =
-      libro.imagen ||
-      "https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg";
-    libroImagen.alt = `Portada de ${libro.titulo}`;
-
-    let libroTitulo = document.createElement("h3");
-    libroTitulo.className = "tituloLibro";
-    libroTitulo.textContent = libro.titulo;
-
-    let libroAutor = document.createElement("h4");
-    libroAutor.className = "autorLibro";
-    libroAutor.textContent = libro.autor;
-
-    let libroDatos = document.createElement("div");
-    libroDatos.className = "datosLibro";
-
-    let libroGenero = document.createElement("p");
-    libroGenero.className = "generoLibro";
-    libroGenero.textContent = "Géneros: " + libro.genero;
-
-    let libroAño = document.createElement("p");
-    libroAño.className = "añoLibro";
-    libroAño.textContent = "Año: " + libro.año;
-
-    // Nuevos p para el div, año, genero y autor
-    libroDatos.appendChild(libroGenero);
-    libroDatos.appendChild(libroAño);
-
-    //Nuevo img, h3 y div dentro del DIV
-    libroDiv.appendChild(libroImagen);
-    libroDiv.appendChild(libroTitulo);
-    libroDiv.appendChild(libroAutor);
-    libroDiv.appendChild(libroDatos);
-    // Nuevo DIV dentro del LI
-    nuevoLibroPendiente.appendChild(libroDiv);
-
-    //Nuevo LI dentro de la UL
-    listaLibrosPendientes.appendChild(nuevoLibroPendiente);
+    htmlPendientes += `
+      <li class="nuevoLibroPendiente">
+        <div class="cajaLibro">
+          <img class="imagenLibro" src="${
+            libro.imagen ||
+            "https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg"
+          }" alt="Portada de ${libro.titulo}">
+          <h3 class="tituloLibro">${libro.titulo}</h3>
+          <h4 class="autorLibro">${libro.autor}</h4>
+          <div class="datosLibro">
+            <p class="generoLibro">Géneros: ${libro.genero}</p>
+            <p class="añoLibro">Año: ${libro.año}</p>
+          </div>
+        </div>
+      </li>
+    `;
   });
+  listaLibrosPendientes.innerHTML = htmlPendientes;
 
+  // Generar HTML para libros deseados
   let listaLibrosDeseados = document.getElementById("listaDeseados");
+  let htmlDeseados = "";
   librosDeseados.forEach((libro) => {
-    let nuevoLibroDeseado = document.createElement("li");
-    nuevoLibroDeseado.className = "nuevoLibroDeseado";
-
-    let libroDiv = document.createElement("div");
-    libroDiv.className = "cajaLibro";
-
-    let libroImagen = document.createElement("img");
-    libroImagen.className = "imagenLibro";
-    libroImagen.src =
-      libro.imagen ||
-      "https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg";
-    libroImagen.alt = `Portada de ${libro.titulo}`;
-
-    let libroTitulo = document.createElement("h3");
-    libroTitulo.className = "tituloLibro";
-    libroTitulo.textContent = libro.titulo;
-
-    let libroAutor = document.createElement("h4");
-    libroAutor.className = "autorLibro";
-    libroAutor.textContent = libro.autor;
-
-    let libroDatos = document.createElement("div");
-    libroDatos.className = "datosLibro";
-
-    let libroGenero = document.createElement("p");
-    libroGenero.className = "generoLibro";
-    libroGenero.textContent = "Géneros: " + libro.genero;
-
-    let libroAño = document.createElement("p");
-    libroAño.className = "añoLibro";
-    libroAño.textContent = "Año: " + libro.año;
-
-    // Nuevos p para el div, año, genero y autor
-    libroDatos.appendChild(libroGenero);
-    libroDatos.appendChild(libroAño);
-
-    //Nuevo img, h3 y div dentro del DIV
-    libroDiv.appendChild(libroImagen);
-    libroDiv.appendChild(libroTitulo);
-    libroDiv.appendChild(libroAutor);
-    libroDiv.appendChild(libroDatos);
-
-    // Nuevo DIV dentro del LI
-    nuevoLibroDeseado.appendChild(libroDiv);
-
-    //Nuevo LI dentro de la UL
-    listaLibrosDeseados.appendChild(nuevoLibroDeseado);
+    htmlDeseados += `
+      <li class="nuevoLibroDeseado">
+        <div class="cajaLibro">
+          <img class="imagenLibro" src="${
+            libro.imagen ||
+            "https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg"
+          }" alt="Portada de ${libro.titulo}">
+          <h3 class="tituloLibro">${libro.titulo}</h3>
+          <h4 class="autorLibro">${libro.autor}</h4>
+          <div class="datosLibro">
+            <p class="generoLibro">Géneros: ${libro.genero}</p>
+            <p class="añoLibro">Año: ${libro.año}</p>
+          </div>
+        </div>
+      </li>
+    `;
   });
+  listaLibrosDeseados.innerHTML = htmlDeseados;
+
   // Va a actualziar el contador de libros en el aside LENGTH
 
   let contadorLeidos = document.getElementById("contadorLeidos");
