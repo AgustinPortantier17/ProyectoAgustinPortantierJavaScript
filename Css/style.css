@@ -17,31 +17,75 @@ body {
 
 /*HEADER*/
 header {
-    grid-area: 1 / 1 / 2 / 2;
+    grid-area: 1 / 2 / 2 / 2;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
     font-style: italic;
-
+    margin-top: 15px;
 }
-
-
 
 
 
 
 /*MAIN*/
 main {
-    grid-area: 1 / 2 / 4 / 3;
+    grid-area: 2 / 2 / 4 / 3;
     padding: 20px;
-    border-left: 2px solid rgb(67, 158, 128);
 }
-main h2 {
-    font-size: 30px;
+.nav-pages {
     margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 150px;
+}
+.nav-pages a {
+    text-decoration: none;
+    color: #194666;
+}
+.boton-pages {
+  background-color: #e1ecf4;
+  border-radius: 3px;
+  border: 1px solid #7aa7c7;
+  box-shadow: rgba(255, 255, 255, .7) 0 1px 0 0 inset;
+  box-sizing: border-box;
+  color: #194666;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.15385;
+  margin: 0;
+  outline: none;
+  padding: 8px .8em;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  white-space: nowrap;
+  margin: 5px 0;
 }
 
+.boton-pages:hover,
+.boton-pages:focus {
+  background-color: #b3d3ea;
+  color: #2c5777;
+}
+
+.boton-pages:focus {
+  box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
+}
+
+.boton-pages:active {
+  background-color: #a0c7e4;
+  box-shadow: none;
+  color: #2c5777;
+}
 .gestion-libros {
     display: flex;
     justify-content: center;
@@ -204,6 +248,9 @@ aside {
     padding: 10px;
     align-content: space-evenly;
     position: fixed;
+    border-right: 2px solid rgb(67, 158, 128);
+    height: 100%;
+
 }
 aside div {
     display: grid;
@@ -215,6 +262,32 @@ aside div {
     padding: 10px;
 
 }
+.nine h1 {
+  text-align:center; font-size:50px; text-transform:uppercase; color:#222; letter-spacing:1px;
+  font-family:"Playfair Display", serif; font-weight:400;
+}
+.nine h1 span {
+  margin-top: 5px;
+    font-size:15px; color:#444; word-spacing:1px; font-weight:normal; letter-spacing:2px;
+    text-transform: uppercase; font-family:"Raleway", sans-serif; font-weight:500;
+
+    display: grid;
+    grid-template-columns: 1fr max-content 1fr;
+    grid-template-rows: 27px 0;
+    grid-gap: 20px;
+    align-items: center;
+}
+
+.nine h1 span:after,.nine h1 span:before {
+    content: " ";
+    display: block;
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    height: 5px;
+  background-color:#f8f8f8;
+}
+
+
 aside div h2 {
     grid-area: 2 / 1 /2 / 3;
     font-size: 25px;
@@ -290,3 +363,49 @@ footer {
     min-width: 300px;
 
 }
+
+/*LIBROS RECOMENDADOS*/
+#listaLibrosRecomendados {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+#listaLibrosRecomendados div {
+    background: linear-gradient(135deg, #eed284 0%, #a08a8a 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    border: 2px solid #0c0c0c;
+    border-radius: 15px;
+    font-size: 18px;
+    height: 100%;
+    padding: 5px;
+    justify-content: stretch;
+        position: relative;
+
+}
+#listaLibrosRecomendados img {
+    width: 250px;
+    height: 350px;
+    border-radius: 15px;
+}
+
+.datosLibro p {
+    align-self: stretch;
+}
+.datosLibro button {
+    position: absolute;
+    right: 5px;
+    bottom: 2px;
+    margin: 0;
+    padding: 8px 16px;
+    border-radius: 8px;
+    background: #b96b3d;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+

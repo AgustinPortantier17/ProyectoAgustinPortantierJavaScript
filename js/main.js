@@ -120,27 +120,50 @@ btnBorrarLibro.addEventListener("click", () => {
   if (
     document.getElementById("tituloBorrar").value &&
     document.getElementById("categoriaBorrar").value
-  ) {
-    librosTodos = librosTodos.filter(
-      (libro) =>
-        libro.titulo.toLowerCase() !==
-          document.getElementById("tituloBorrar").value.toLowerCase() ||
-        libro.categoria.toLowerCase() !==
-          document.getElementById("categoriaBorrar").value
-    );
-    guardarLibros();
-    // Bajo esta funcion, se borra el libro si es FALSE, por lo tanto uso ||, porque si uso &&, puede dar false y borrarse todos los libros, con || no pasa porque puede dar true si conincide uno de los 2.
-    document.getElementById("formBorrarLibro").reset(); // reset al formulario
-    document.getElementById("menuFlotanteBorrarLibro").style.display = "none";
-    refrescarLibros();
-    Swal.fire({
-      position: "center",
-      icon: "success",
-      title: "Este libro fue borrado correctamente",
-      showConfirmButton: false,
-      timer: 1500,
-    });
-  }
+  )
+    try {
+      const libroExiste = librosTodos.find(
+        (libro) =>
+          libro.titulo.toLowerCase() ===
+            document.getElementById("tituloBorrar").value.toLowerCase() &&
+          libro.categoria.toLowerCase() ===
+            document.getElementById("categoriaBorrar").value
+      );
+
+      if (libroExiste) {
+        // Borra solo el libro que coincide en ambos campos
+        librosTodos = librosTodos.filter(
+          (libro) =>
+            !(
+              libro.titulo.toLowerCase() ===
+                document.getElementById("tituloBorrar").value.toLowerCase() &&
+              libro.categoria.toLowerCase() ===
+                document.getElementById("categoriaBorrar").value
+            )
+        );
+        guardarLibros();
+        document.getElementById("formBorrarLibro").reset();
+        document.getElementById("menuFlotanteBorrarLibro").style.display =
+          "none";
+        refrescarLibros();
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Este libro fue borrado correctamente",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } else {
+        throw new Error("El libro no se encuentra en la lista");
+      }
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: error.message,
+        footer: "Revisa tu lista!",
+      });
+    }
 });
 
 // Funcion del boton mover: mostrar menu flotante
@@ -160,25 +183,41 @@ cerrarMover.addEventListener("click", () => {
 // Agregar evento de mover libro de categoria
 const btnMoverLibro = document.getElementById("botonMoverINMenu");
 btnMoverLibro.addEventListener("click", () => {
-  if (
-    document.getElementById("tituloMover").value &&
-    document.getElementById("categoriaMover").value &&
-    document.getElementById("nuevaCategoria").value
-  ) {
-    for (libro of librosTodos) {
-      if (
+  try {
+    // Busca el libro que quieres mover
+    const libroAMover = librosTodos.find(
+      (libro) =>
         libro.titulo.toLowerCase() ===
-          document.getElementById("tituloMover").value.toLowerCase() &&
-        libro.categoria === document.getElementById("categoriaMover").value
-      ) {
-        libro.categoria = document.getElementById("nuevaCategoria").value;
-        guardarLibros();
-        document.getElementById("formMoverLibro").reset();
-        document.getElementById("menuFlotanteMoverLibro").style.display =
-          "none";
-        refrescarLibros(); // Llamada para actualizar la interfaz
-      }
+          document.getElementById("tituloMover").value &&
+        libro.categoria.toLowerCase() ===
+          document.getElementById("categoriaMover").value
+    );
+
+    if (libroAMover) {
+      libroAMover.categoria = document.getElementById("nuevaCategoria").value;
+      guardarLibros();
+      document.getElementById("formMoverLibro").reset();
+      document.getElementById("menuFlotanteMoverLibro").style.display = "none";
+      refrescarLibros();
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "El libro fue movido correctamente",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } else {
+      throw new Error(
+        "No fue posible mover el libro desde la categoría seleccionada"
+      );
     }
+  } catch (error) {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: error.message,
+      footer: "Revisa las categorias ingresadas",
+    });
   }
 });
 

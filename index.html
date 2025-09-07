@@ -20,9 +20,13 @@
     <title>Marcapáginas</title>
   </head>
   <body>
+    <header>
+      <div class="nine">
+        <h1>Marcapáginas<span>Gestiona tus lecturas</span></h1>
+      </div>
+    </header>
     <main>
       <nav>
-        <h2>Tus Libros</h2>
         <div class="gestion-libros">
           <button id="btn-agregar">
             <img src="assets/icons/add.webp" alt="Añadir Libro" />
@@ -157,11 +161,14 @@
     </div>
 
     <aside>
-      <div>
-        <h1>Marcapáginas</h1>
-        <h2>Gestiona tus lecturas</h2>
+      <div class="nav-pages">
+        <button class="boton-pages">
+          <a href="index.html">Mis Lecturas</a>
+        </button>
+        <button class="boton-pages">
+          <a href="recomendados.html">Lecturas Recomendadas</a>
+        </button>
       </div>
-
       <div id="cat-allbooks">
         <div id="icon-todos">
           <img src="assets/icons/todos.webp" alt="" />
@@ -191,8 +198,5 @@
         <p id="contadorDeseados">0</p>
       </div>
     </aside>
-    <footer>
-      <p>Proyecto JavaScript- Agustín Portantier - CoderHouse</p>
-    </footer>
   </body>
 </html>
