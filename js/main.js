@@ -188,7 +188,7 @@ btnMoverLibro.addEventListener("click", () => {
     const libroAMover = librosTodos.find(
       (libro) =>
         libro.titulo.toLowerCase() ===
-          document.getElementById("tituloMover").value &&
+          document.getElementById("tituloMover").value.toLowerCase() &&
         libro.categoria.toLowerCase() ===
           document.getElementById("categoriaMover").value
     );
