@@ -1,7 +1,7 @@
 let listaLibrosRecomendados = document.getElementById(
   "listaLibrosRecomendados"
 );
-const URL = "http://127.0.0.1:5500/db/data.json";
+const URL = "../db/data.json";
 
 function cargarLibrosRecomendados() {
   fetch(URL)
