@@ -243,13 +243,19 @@ refrescarLibros = () => {
   let listaLibrosLeidos = document.getElementById("listaLeidos");
   let htmlLeidos = "";
   librosLeidos.forEach((libro) => {
+    const indexReal = librosTodos.findIndex(
+      (l) =>
+        l.titulo === libro.titulo &&
+        l.autor === libro.autor &&
+        l.categoria === libro.categoria
+    );
     htmlLeidos += `
       <li class="nuevoLibroLeido">
         <div class="cajaLibro">
           <img class="imagenLibro" src="${
             libro.imagen ||
             "https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg"
-          }" alt="Portada de ${libro.titulo}">
+          }" alt="Portada de ${libro.titulo}" data-index="${indexReal}">
           <h3 class="tituloLibro">${libro.titulo}</h3>
           <h4 class="autorLibro">${libro.autor}</h4>
           <div class="datosLibro">
@@ -265,13 +271,19 @@ refrescarLibros = () => {
   let listaLibrosPendientes = document.getElementById("listaPendientes");
   let htmlPendientes = "";
   librosPendientes.forEach((libro) => {
+    const indexReal = librosTodos.findIndex(
+      (l) =>
+        l.titulo === libro.titulo &&
+        l.autor === libro.autor &&
+        l.categoria === libro.categoria
+    );
     htmlPendientes += `
       <li class="nuevoLibroPendiente">
         <div class="cajaLibro">
           <img class="imagenLibro" src="${
             libro.imagen ||
             "https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg"
-          }" alt="Portada de ${libro.titulo}">
+          }" alt="Portada de ${libro.titulo}" data-index="${indexReal}">
           <h3 class="tituloLibro">${libro.titulo}</h3>
           <h4 class="autorLibro">${libro.autor}</h4>
           <div class="datosLibro">
@@ -288,13 +300,19 @@ refrescarLibros = () => {
   let listaLibrosDeseados = document.getElementById("listaDeseados");
   let htmlDeseados = "";
   librosDeseados.forEach((libro) => {
+    const indexReal = librosTodos.findIndex(
+      (l) =>
+        l.titulo === libro.titulo &&
+        l.autor === libro.autor &&
+        l.categoria === libro.categoria
+    );
     htmlDeseados += `
       <li class="nuevoLibroDeseado">
         <div class="cajaLibro">
           <img class="imagenLibro" src="${
             libro.imagen ||
             "https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg"
-          }" alt="Portada de ${libro.titulo}">
+          }" alt="Portada de ${libro.titulo}" data-index="${indexReal}"> 
           <h3 class="tituloLibro">${libro.titulo}</h3>
           <h4 class="autorLibro">${libro.autor}</h4>
           <div class="datosLibro">
@@ -306,6 +324,37 @@ refrescarLibros = () => {
     `;
   });
   listaLibrosDeseados.innerHTML = htmlDeseados;
+
+  document.querySelectorAll(".imagenLibro").forEach((img) => {
+    if (img.src.includes("No-Image-Placeholder.svg")) {
+      img.style.cursor = "pointer";
+      img.addEventListener("click", () => {
+        // Mostrar menú para ingresar el link de la imagen
+        Swal.fire({
+          title: "Agregar link de imagen",
+          input: "url",
+          inputLabel: "Pega el link de la imagen",
+          showCancelButton: true,
+          confirmButtonText: "Guardar",
+          cancelButtonText: "Cancelar",
+        }).then((result) => {
+          if (result.isConfirmed && result.value) {
+            const index = img.getAttribute("data-index");
+            // Actualiza el libro en el array
+            librosTodos[index].imagen = result.value;
+            guardarLibros();
+            refrescarLibros();
+            Swal.fire({
+              icon: "success",
+              title: "Imagen actualizada",
+              timer: 1200,
+              showConfirmButton: false,
+            });
+          }
+        });
+      });
+    }
+  });
 
   // Va a actualziar el contador de libros en el aside LENGTH
 

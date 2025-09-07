@@ -45,3 +45,18 @@ function renderLibros(listaRecomendados) {
     });
   });
 }
+
+// Al cargar la página recomendados.html
+// Recupera los arrays desde localStorage
+const librosTodos = JSON.parse(localStorage.getItem("librosTodos")) || [];
+const leidos = librosTodos.filter((libro) => libro.categoria === "leido");
+const pendientes = librosTodos.filter(
+  (libro) => libro.categoria === "pendiente"
+);
+const deseados = librosTodos.filter((libro) => libro.categoria === "deseado");
+
+// Actualiza los contadores
+document.getElementById("contadorTodos").textContent = librosTodos.length;
+document.getElementById("contadorLeidos").textContent = leidos.length;
+document.getElementById("contadorPendientes").textContent = pendientes.length;
+document.getElementById("contadorDeseados").textContent = deseados.length;
